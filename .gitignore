@@ -41,3 +41,6 @@ node_modules
 .floobit
 .floo
 .flooignore
+
+# Safe Text File
+safe.txt
