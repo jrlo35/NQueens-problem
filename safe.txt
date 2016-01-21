@@ -1,2 +1,24 @@
-this is a test
-sdfjklasfjkldsjklajsklfjskljklajkljkljasjdljl
+// keep track of rows in array (size n)
+// keep track of cols in array (size n)
+// create array to hold all solutions
+// create array to hold current solution
+
+// pair up row and column
+  //push pair into current solution
+  //remove pair from rows/cols arrays
+  //recurse until row/col arrays = 0
+
+// find all solutions
+  // check all starting spots
+  // start at 0,0 and move through board
+
+    // for each starting spot find a solution
+      // place each piece (n pieces)
+        // find a row & column that's empty
+      // return that solution
+
+      // check a new starting spot until all checked
+  // return number of solutions
+
+
+

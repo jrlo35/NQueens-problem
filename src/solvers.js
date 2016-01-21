@@ -13,32 +13,57 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
-window.findNRooksSolution = function(n) {
+window.findNRooksSolution = function(n, row, col) {
   // store solution
-  var solution = new Board({n:5}); //fixme
-    // start at 0,0
-    //iterate through row checking for conflict
-  var length = solution.rows().length-1;
-  for(var i=0;i<=length;i++){
-
-
-      for(var j=0;j<=length;j++){
-        // if no row conflict iterate though columns looking for conflict
-        //if no col conflict
-          // place rook
-
-          solution.togglePiece(i,j);
-          // start looking for spot for next rook at next row
-
+  var solution = new Board({n:n});
+  var startRow = row || 0;
+  var startCol = col || 0;
+  //toggle on starting position
+  solution.togglePiece(startRow,startCol)
+  //place n pieces
+  var length=solution.rows().length-1
+  // console.log(solution)
+  // console.log(startRow, startCol);
+  for(var i=1;i<n;i++){
+    console.log("working on piece " + i)
+    var goodRow = null;
+    for(var j=0;j<=length;j++){
+      console.log('row ' + j);
+      if(solution.get(j)[startCol]===1){
+        continue;
       }
-        // if col conflict
-          // check next column
+      solution.togglePiece(j, startCol);
+      console.log(solution.rows());
+      if(solution.hasRowConflictAt(j)){
+        console.log('had conflict')
+        solution.togglePiece(j,startCol)
+      } else{
+        console.log('no conflict')
+        goodRow=j;
+        break;
+      }
+    }//col
+  //   for(var k=0;k<=length;k++){
+  //     solution.togglePiece(goodRow,k)
+  //     if(solution.hasColConflictAt(k)){
+  //       solution.togglePiece(goodRow,k)
+  //       console.log('row and col',j,k)
+  //     }
+
+  //     else{
+  //       break;
+  //     }
+  //   }
   }
-      // if row conflict go to next row
-  console.log(solution.rows());
+  //check rows until we find one with no rook
+    //remember that row
+    //find column to place piece
+      // place each piece (n pieces)
+
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
-  return solution;
+  // return that solution
+  return solution.rows();
 };
 
 
