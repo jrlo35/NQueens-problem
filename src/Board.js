@@ -81,7 +81,7 @@
     hasRowConflictAt: function(rowIndex) {
       var bool = false;
       var count = 0;
-      for(var i = 0; i < this.get(rowIndex).length-1; i++){
+      for(var i = 0; i < this.get(rowIndex).length; i++){
         if(this.get(rowIndex)[i] === 1){
           count++;
         }
@@ -94,7 +94,7 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      for(var i = 0; i < this.rows().length-1; i++){
+      for(var i = 0; i < this.rows().length; i++){
         if(this.hasRowConflictAt(i)){
           return true;
         }
@@ -111,7 +111,7 @@
     hasColConflictAt: function(colIndex) {
       var count = 0;
       var bool = false;
-      for(var i = 0; i < this.rows().length-1; i++){
+      for(var i = 0; i < this.rows().length; i++){
         if(this.get(i)[colIndex] ===1){
           count++;
         }
@@ -124,7 +124,7 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      for(var i=0; i< this.rows().length-1;i++){
+      for(var i=0; i< this.rows().length;i++){
         if(this.hasColConflictAt(i)){
           return true;
         }
@@ -142,7 +142,7 @@
       var count=0;
       var bool=false;
       var currentCol=majorDiagonalColumnIndexAtFirstRow;
-      for(var i=0;i<this.rows().length-1;i++){
+      for(var i=0;i<this.rows().length;i++){
 
         if(this.rows()[i][currentCol]===1){
           count++;
@@ -157,7 +157,7 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      for(var i=0;i<this.rows().length-1;i++){
+      for(var i=0;i<this.rows().length;i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
 
@@ -177,7 +177,7 @@
       var bool = false;
       var currentCol = minorDiagonalColumnIndexAtFirstRow;
       var arrayLength = this.rows().length-1;
-      for(var i = 0; i < arrayLength; i++){
+      for(var i = 0; i <= arrayLength; i++){
         if(currentCol < 0 || arrayLength < 0){
           break;
         }
@@ -194,7 +194,7 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      for(var i = this.rows().length -1; i >= 0; i--){
+      for(var i = this.rows().length; i > 0; i--){
         if(this.hasMinorDiagonalConflictAt(i)){
           return true;
         }
