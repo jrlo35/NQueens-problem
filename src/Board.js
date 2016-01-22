@@ -79,17 +79,20 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      var bool = false;
-      var count = 0;
-      for(var i = 0; i < this.get(rowIndex).length; i++){
-        if(this.get(rowIndex)[i] === 1){
-          count++;
+      //var bool = false;
+      var count=0;
+      var rows=this.get(rowIndex)
+
+      _.each(rows, function(row){
+        count+=row;
         }
-      }
+      );
       if(count > 1){
-        bool = true;
+        return true;
       }
-      return bool; // fixme
+      return false;
+      
+       // fixme
     },
 
     // test if any rows on this board contain conflicts
@@ -110,16 +113,13 @@
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
       var count = 0;
-      var bool = false;
-      for(var i = 0; i < this.rows().length; i++){
-        if(this.get(i)[colIndex] ===1){
-          count++;
-        }
-      }
+      _.each(this.rows(),function(item){
+        count+=item[colIndex];
+      });
       if(count > 1){
-        bool = true;
-      }
-      return bool; // fixme
+        return true;
+      };
+      return false // fixme
     },
 
     // test if any columns on this board contain conflicts
@@ -172,23 +172,16 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      var matrix = this.rows();
       var count = 0;
-      var bool = false;
-      var currentCol = minorDiagonalColumnIndexAtFirstRow;
-      var arrayLength = this.rows().length-1;
-      for(var i = 0; i <= arrayLength; i++){
-        if(currentCol < 0 || arrayLength < 0){
-          break;
-        }
-        if(this.rows()[i][currentCol] === 1){
+      var n = this.get('n');
+      for (var i = 0; i < n; i++) {
+        if (matrix[i][minorDiagonalColumnIndexAtFirstRow-i]) {
           count++;
         }
-        currentCol--;
       }
-      if(count > 1){
-        bool=true;
-      }
-      return bool; // fixme
+
+      return count > 1; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
