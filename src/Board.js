@@ -160,7 +160,6 @@
       for(var i=0;i<this.rows().length;i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
-
         }
       }
       return false; // fixme
