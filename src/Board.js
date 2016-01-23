@@ -174,12 +174,15 @@
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var matrix = this.rows();
       var count = 0;
+      var currentCol=minorDiagonalColumnIndexAtFirstRow
       var n = this.get('n');
       for (var i = 0; i < n; i++) {
-        if (matrix[i][minorDiagonalColumnIndexAtFirstRow-i]) {
+        if (matrix[i][currentCol]===1) {
           count++;
         }
+        currentCol--
       }
+      
 
       return count > 1; // fixme
     },

@@ -24,11 +24,12 @@ window.findSolution=function(row, board, n, callback, method){
     for(var i = 0; i < n; i++){ // iterate columns
       // place piece
       board.togglePiece(row, i);
+      //if no conflict
       if(!board[method]()){
         findSolution(row+1,board,n, callback, method);
       }
       // unplace piece
-      board.togglePiece(row, i);
+      board.togglePiece(row, i);//go to next column
     }
 
 };
